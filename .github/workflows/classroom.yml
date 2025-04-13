@@ -35,6 +35,6 @@ jobs:
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
-      ADDITION-TEST_RESULTS: "${{ steps.addition-test.outputs.result }}"
+         ADDITION-TEST_RESULTS: "${{ steps.addition-test.outputs.result }}"
       with:
          runners: addition-test
