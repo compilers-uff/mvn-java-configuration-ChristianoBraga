@@ -27,9 +27,9 @@ jobs:
       uses: classroom-resources/autograding-io-grader@v1 
       with:
           test-name: Addition Test
-          command: './bin/test-cmd.sh'
-          expected-output: 'Tests: 1 passed'
-          comparison-method: 'included'
+          command: "./bin/test-cmd.sh"
+          expected-output: "Tests: 1 passed"
+          comparison-method: included
           timeout: 10
 	      max-score: 1
     - name: Autograding Reporter
