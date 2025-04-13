@@ -23,7 +23,7 @@ jobs:
         with:
              test-name: Addition Test
              id: addition-test
-             command: "./bin/add.sh"
+             command: "java -cp "chocopy-ref.jar:target/assignment.jar" chocopy.ChocoPy --pass=s --test --dir src/test/data/pa1/sample/expr_plus.py"
       #       input: 1 2
              expected-output: "Tests: 1 passed,"
              comparison-method: include
