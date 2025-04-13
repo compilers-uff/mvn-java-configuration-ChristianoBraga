@@ -23,17 +23,18 @@ jobs:
     - name: Build with Maven
       run: mvn package
     - name: Run tests
-      uses: classroom-resources/autograding-io-grader@v1
+      id: addition-test
+      uses: classroom-resources/autograding-io-grader@v1 
       with:
         test-name: Addition Test
-        id: addition-test
         command: './bin/test-cmd.sh'
         expected-output: 'Tests: 1 passed'
         comparison-method: 'included'
         timeout: 10
+	    max-score: 1
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
-         ADDITION-TEST_RESULTS: "${{ steps.addition-test.outputs.result }}"
+      ADDITION-TEST_RESULTS: "${{ steps.addition-test.outputs.result }}"
       with:
          runners: addition-test
