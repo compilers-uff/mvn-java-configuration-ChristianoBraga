@@ -74,6 +74,7 @@ IntegerLiteral = 0 | [1-9][0-9]*
   "-"                         { return symbol(ChocoPyTokens.MINUS, yytext()); }
   "*"                         { return symbol(ChocoPyTokens.TIMES, yytext()); }
   "/"                         { return symbol(ChocoPyTokens.DIV, yytext()); }  
+  "=="                         { return symbol(ChocoPyTokens.EQ, yytext()); }  
   
   /* Whitespace. */
   {WhiteSpace}                { /* ignore */ }
