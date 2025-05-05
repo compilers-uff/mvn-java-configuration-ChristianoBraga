@@ -146,7 +146,6 @@ terminal NEWLINE;
 terminal String PLUS; 
 terminal String MINUS;
 terminal String TIMES;
-terminal String DIV;
 terminal String EQ;
 terminal Integer NUMBER; 
 /* Returned by the lexer for erroneous tokens.  Since it does not appear in
