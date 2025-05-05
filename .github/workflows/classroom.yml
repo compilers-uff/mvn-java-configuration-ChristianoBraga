@@ -27,9 +27,19 @@ jobs:
         command: 'grader/test-cmd.sh src/test/data/pa1/sample/bad_assign_expr1.py '
         timeout: 10
         max-score: 10
+    - name: bad_assign_expr2
+      id: bad_assign_expr2
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: bad_assign_expr2
+        setup-command: mvn package
+        command: 'grader/test-cmd.sh src/test/data/pa1/sample/bad_assign_expr2.py '
+        timeout: 10
+        max-score: 10
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
         BAD_ASSIGN_EXPR1_RESULTS: "${{steps.bad_assign_expr1.outputs.result}}"
+        BAD_ASSIGN_EXPR2_RESULTS: "${{steps.bad_assign_expr2.outputs.result}}"
       with:
-        runners: bad_assign_expr1
+        runners: bad_assign_expr1, bad_assign_expr2
