@@ -1,8 +1,7 @@
 name: Autograding Tests
-on:
-  - push
-  - workflow_dispatch
-  - repository_dispatch
+'on':
+- push
+- repository_dispatch
 permissions:
   checks: write
   actions: read
@@ -14,27 +13,18 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: Set up JDK 21
-      uses: actions/setup-java@v4
+    - name: Test
+      id: test
+      uses: classroom-resources/autograding-command-grader@v1
       with:
-        java-version: '21'
-        distribution: 'temurin'
-        cache: maven
-    - name: Build with Maven
-      run: mvn package
-    - name: Run tests
-      id: addition-test
-      uses: classroom-resources/autograding-io-grader@v1 
-      with:
-          test-name: Addition Test
-          command: './bin/test-cmd.sh'
-          expected-output: 'Tests: 1 passed'
-          comparison-method: 'included'
-          timeout: 10
-	      max-score: 1
+        test-name: Test
+        setup-command: mvn package
+        command: bin/test-cmd.sh
+        timeout: 10
+        max-score: 10
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
-         ADDITION-TEST_RESULTS: "${{ steps.addition-test.outputs.result }}"
+        TEST_RESULTS: "${{steps.test.outputs.result}}"
       with:
-         runners: addition-test
+        runners: test
