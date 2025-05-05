@@ -21,13 +21,26 @@ jobs:
         setup-command: mvn package
         command: grader/test-cmd.sh
         input: src/test/data/pa1/sample/bad_assign_expr1.py
-        expected-output: '0'
-        comparison-method: exact
+        expected-output: 'Tests: 1 passed, 0 failed, and 0 ignored.'
+        comparison-method: contains
+        timeout: 10
+        max-score: 10
+    - name: expr_plus.py
+      id: expr_plus-py
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: expr_plus.py
+        setup-command: mvn package
+        command: grader/test-cmd.sh
+        input: expr_plus.py
+        expected-output: 'Tests: 1 passed, 0 failed, and 0 ignored.'
+        comparison-method: contains
         timeout: 10
         max-score: 10
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
         BAD_ASSIGN_EXPR1_RESULTS: "${{steps.bad_assign_expr1.outputs.result}}"
+        EXPR_PLUS-PY_RESULTS: "${{steps.expr_plus-py.outputs.result}}"
       with:
-        runners: bad_assign_expr1
+        runners: bad_assign_expr1,expr_plus-py
