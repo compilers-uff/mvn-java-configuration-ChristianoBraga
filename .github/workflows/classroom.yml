@@ -19,12 +19,13 @@ jobs:
         distribution: 'temurin'
         java-version: '21'
         cache: 'maven'
+        cache-dependency-path: 'pom.xml'
     - name: bad_assign_expr1
       id: bad_assign_expr1
       uses: classroom-resources/autograding-io-grader@v1
       with:
         test-name: bad_assign_expr1
-        setup-command: mvn package
+        setup-command: mvn -B package --file pom.xml
         command: grader/test-cmd.sh
         input: src/test/data/pa1/sample/bad_assign_expr1.py
         expected-output: 'Tests: 1 passed, 0 failed, and 0 ignored'
@@ -36,7 +37,7 @@ jobs:
       uses: classroom-resources/autograding-io-grader@v1
       with:
         test-name: expr_plus
-        setup-command: mvn package
+        setup-command: mvn -B package --file pom.xml
         command: grader/test-cmd.sh src/test/data/pa1/sample/expr_plus.py
         input: ''
         expected-output: 'Tests: 1 passed, 0 failed, and 0 ignored'
