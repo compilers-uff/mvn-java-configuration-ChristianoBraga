@@ -27,7 +27,7 @@ jobs:
         test-name: bad_assign_expr1
         setup-command: mvn -B package --file pom.xml
         command: grader/test-cmd.sh
-        input: src/test/data/pa1/sample/bad_assign_expr1.py
+        input: 'src/test/data/pa1/sample/bad_assign_expr1.py'
         expected-output: 'Tests: 1 passed, 0 failed, and 0 ignored'
         comparison-method: contains
         timeout: 10
@@ -38,8 +38,8 @@ jobs:
       with:
         test-name: expr_plus
         setup-command: mvn -B package --file pom.xml
-        command: grader/test-cmd.sh src/test/data/pa1/sample/expr_plus.py
-        input: ''
+        command: grader/test-cmd.sh
+        input: 'src/test/data/pa1/sample/expr_plus.py'
         expected-output: 'Tests: 1 passed, 0 failed, and 0 ignored'
         comparison-method: contains
         timeout: 10
