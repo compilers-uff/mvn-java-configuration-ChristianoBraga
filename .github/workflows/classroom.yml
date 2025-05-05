@@ -13,18 +13,23 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: Test
-      id: test
+    - uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '21'
+        cache: 'maven'
+    - name: bad_assign_expr1
+      id: bad_assign_expr1
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: Test
+        test-name: bad_assign_expr1
         setup-command: mvn package
-        command: bin/test-cmd.sh
+        command: 'grader/test-cmd.sh src/test/data/pa1/sample/bad_assign_expr1.py '
         timeout: 10
         max-score: 10
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
-        TEST_RESULTS: "${{steps.test.outputs.result}}"
+        BAD_ASSIGN_EXPR1_RESULTS: "${{steps.bad_assign_expr1.outputs.result}}"
       with:
-        runners: test
+        runners: bad_assign_expr1
