@@ -27,7 +27,7 @@ jobs:
         setup-command: mvn package
         command: grader/test-cmd.sh
         input: src/test/data/pa1/sample/bad_assign_expr1.py
-        expected-output: 'Tests: 1 passed, 0 failed, and 0 ignored.'
+        expected-output: 'Tests: 1 passed, 0 failed, and 0 ignored'
         comparison-method: contains
         timeout: 10
         max-score: 10
